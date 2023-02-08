@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Shelf;
+use App\Repository\BookRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,5 +39,14 @@ class ShelfController extends AbstractController
         $this->manager->flush();
 
         return $this->render('home/index.html.twig');
+    }
+
+
+    #[Route('/getAll')]
+    public function getAllBook (BookRepository $repository)
+    {
+        $books = $repository->findAll();
+
+        dd($books);
     }
 }
