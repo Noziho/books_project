@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Category;
 use App\Entity\Shelf;
-use App\Repository\BookRepository;
-use App\Repository\CategoryRepository;
+use App\Repository\ShelfRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,12 +28,13 @@ class ShelfController extends AbstractController
         ]);
     }
 
-    #[Route('/addShelf/{name}')]
-    public function addShelf (string $name): Response
+    #[Route('/addShelf/{nameShelf}/{name}')]
+    public function addShelf (string $nameShelf, Category $category): Response
     {
         $shelf = new Shelf();
         $shelf
-            ->setName($name);
+            ->setName($nameShelf)
+            ->addCategory($category);
 
         $this->manager->persist($shelf);
         $this->manager->flush();
@@ -43,10 +44,14 @@ class ShelfController extends AbstractController
 
 
     #[Route('/getAll')]
-    public function getAllBook (BookRepository $repository)
+    public function getAllBook (ShelfRepository $repository)
     {
-        $books = $repository->findAll();
+        $shelfs = $repository->findAll();
 
-        dd($books);
+        foreach ($shelfs as $shelf)
+        {
+            dump($shelf->getCategory()->getValues());
+        }
+        die();
     }
 }

@@ -4,4 +4,13 @@
 
 {% block body %}
 <h1>Home</h1>
+    {% for shelf in shelfs %}
+        <h1>{{ shelf.name }}</h1>
+        {% for shelfBook in shelf.category.values %}
+            {% for book in shelfBook.books.values %}
+                <h2>{{ book.name }}</h2>
+                <h3>{{ book.category.name }}</h3>
+            {% endfor %}
+        {% endfor%}
+    {% endfor %}
 {% endblock %}

@@ -51,7 +51,7 @@ class Shelf
         return $this->category;
     }
 
-    public function addCategory(category $category): self
+    public function addCategory(Category $category): self
     {
         if (!$this->category->contains($category)) {
             $this->category->add($category);
@@ -61,7 +61,7 @@ class Shelf
         return $this;
     }
 
-    public function removeCategory(category $category): self
+    public function removeCategory(Category $category): self
     {
         if ($this->category->removeElement($category)) {
             // set the owning side to null (unless already changed)
