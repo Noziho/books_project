@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Entity\Category;
+use App\Repository\ShelfRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +27,7 @@ class BookController extends AbstractController
     }
 
     #[Route('/addBook/{name}/{id}', name: "add_book")]
-    public function addBook(string $name,Category $category): Response
+    public function addBook(string $name, Category $category, ShelfRepository $repository): Response
     {
         $book = new Book();
         $book
@@ -36,6 +37,8 @@ class BookController extends AbstractController
         $this->manager->persist($book);
         $this->manager->flush();
 
-        return $this->render('home/index.html.twig');
+        return $this->render('home/index.html.twig', [
+            "shelfs" => $repository->findAll(),
+        ]);
     }
 }
