@@ -10,5 +10,59 @@ html {
 
 body {
   font-size: 1.6rem;
-  background: #47545a;
+  background: #454545;
+  color: #d1cfcf;
+}
+
+header {
+  width: 100%;
+  min-height: 2rem;
+  padding: 1rem;
+  background: #333333;
+
+}
+
+* a {
+  text-decoration: none;
+  color: #F5F5F5;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+}
+.shelf {
+  width: 80%;
+  padding: 1rem;
+  margin: 1rem;
+  background: #333333;
+  min-height: 20rem;
+
+  .shelfTitle {
+    color: #F5F5F5;
+  }
+
+  .book {
+    margin: 1rem;
+  }
+
+  .bookName {
+    font-weight: bold;
+  }
+}
+
+button  {
+  padding: 0.5rem;
+  border: none;
+}
+
+.bookDescribe {
+  padding: 0.5rem;
+    p{
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
 }

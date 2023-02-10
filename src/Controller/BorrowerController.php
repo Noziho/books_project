@@ -58,7 +58,7 @@ class BorrowerController extends AbstractController
      * @return Response
      */
     #[Route('/borrow/{id}/{borrower}')]
-    public function borrowBook (Book $book, Borrower $borrower, ShelfRepository $repository): Response
+    public function borrowBook (Book $book, ShelfRepository $repository, Borrower $borrower = null): Response
     {
         $book->setBorrower($borrower);
         $book->setBorrowStatus(1);

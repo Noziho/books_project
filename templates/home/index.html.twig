@@ -3,16 +3,22 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<h1>Home</h1>
     {% for shelf in shelfs %}
-        <h1>{{ shelf.name }}</h1>
-        {% for shelfBook in shelf.category.values %}
-            {% for book in shelfBook.books.values %}
-                {% if book.borrowStatus != 1 %}
-                    <h2>{{ book.name }}</h2>
-                    <h3>{{ book.category.name }}</h3>
-                {% endif %}
-            {% endfor %}
-        {% endfor%}
+        <div class="shelf">
+            <h2 class="shelfTitle">{{ shelf.name }}</h2>
+            {% for shelfBook in shelf.category.values %}
+                {% for book in shelfBook.books.values %}
+                    {% if book.borrowStatus != 1 %}
+                        <div class="book">
+                            <div class="bookDescribe">
+                                <p>Titre: <span class="bookName">{{ book.name }}</span></p>
+                                <p>Catégorie: {{ book.category.name }}</p>
+                                <a href="/delete/{{ book.id }}"><button>Supprimer le livre</button></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor%}
+        </div>
     {% endfor %}
 {% endblock %}
